@@ -127,11 +127,32 @@ Bot.reformatEvents = function() {
 	}
 };
 
+let checkIfIncludes = (content, array) => {
+  for (let i = 0; i <= array.length; i++) {
+    if (content.toUpperCase().includes(array[i])) {
+			return true
+		}
+  }
+	return false
+}
+
 Bot.initEvents = function() {
 	this.bot.on("ready", this.onReady.bind(this));
 	this.bot.on("message", message => {
 		if (message.author.username === 'MyDude') {
 			message.react('730061452345475112')
+		}
+		let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP"])
+		let porkchopLove = checkIfIncludes(message.content, ['LOVE'])
+		let porkchopPlural = checkIfIncludes(message.content, ["PORK CHOPS", "PORKCHOPS"])
+		let eating = checkIfIncludes(message.content, ["EATING", "EAT"])
+		if (porkchopLove && porkchopNameDropped && porkchopPlural && eating) {
+			message.channel.send("*The pig stares are you with slow blinking eyes.\nIt's clear it understood what you said and it's clear it doesn't find it funny.\nYou think that's clever? You think that's humorous? 100s of people have made that joke before you and 100s will after you.\nThat's right: you're nothing but 1 of a face cloud of thousands, screaming for individuality with your stupid jokes only to have your voice drowned out by those doing the same.\nYou're nothing and will always be nothing.*\noink oink");
+		} else if (porkchopLove && porkchopNameDropped ) {
+			message.react('❤️')
+			message.channel.send("❤️ oink oink ❤️");
+		} else if (porkchopNameDropped) {
+			message.channel.send("oink oink");
 		}
 		this.onMessage.bind(this)
 	});
