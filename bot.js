@@ -129,7 +129,12 @@ Bot.reformatEvents = function() {
 
 Bot.initEvents = function() {
 	this.bot.on("ready", this.onReady.bind(this));
-	this.bot.on("message", this.onMessage.bind(this));
+	this.bot.on("message", message => {
+		if (message.author.username === 'MyDude') {
+			message.react('730061452345475112')
+		}
+		this.onMessage.bind(this)
+	});
 	Events.registerEvents(this.bot);
 };
 
