@@ -143,16 +143,21 @@ Bot.initEvents = function() {
 			message.react('730061452345475112')
 		}
 		let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP"])
-		let porkchopLove = checkIfIncludes(message.content, ['LOVE'])
+		let porkchopLove = content.toUpperCase().includes('LOVE')
 		let porkchopPlural = checkIfIncludes(message.content, ["PORK CHOPS", "PORKCHOPS"])
 		let eating = checkIfIncludes(message.content, ["EATING", "EAT"])
+		let backwards = checkIfIncludes(message.content, ["SPOHC KROP", "SPOHCKROP"])
 		if (porkchopLove && porkchopNameDropped && porkchopPlural && eating) {
 			message.channel.send("*The pig stares are you with slow blinking eyes.\nIt's clear it understood what you said and it's clear it doesn't find it funny.\nYou think that's clever? You think that's humorous? 100s of people have made that joke before you and 100s will after you.\nThat's right: you're nothing but 1 of a face cloud of thousands, screaming for individuality with your stupid jokes only to have your voice drowned out by those doing the same.\nYou're nothing and will always be nothing.*\noink oink");
 		} else if (porkchopLove && porkchopNameDropped ) {
 			message.react('❤️')
 			message.channel.send("❤️ oink oink ❤️");
+		} else if (porkchopNameDropped && content.toUpperCase().includes('!')) {
+			message.channel.send("OINK! OINK!");
 		} else if (porkchopNameDropped) {
 			message.channel.send("oink oink");
+		} else if (backwards) {
+			message.channel.send("knio knio");
 		}
 		this.onMessage.bind(this)
 	});
