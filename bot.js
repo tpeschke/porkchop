@@ -143,7 +143,7 @@ Bot.initEvents = function() {
 			message.react('730061452345475112')
 		}
 		let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP"])
-		let porkchopLove = content.toUpperCase().includes('LOVE')
+		let porkchopLove = message.content.toUpperCase().includes('LOVE')
 		let porkchopPlural = checkIfIncludes(message.content, ["PORK CHOPS", "PORKCHOPS"])
 		let eating = checkIfIncludes(message.content, ["EATING", "EAT"])
 		let backwards = checkIfIncludes(message.content, ["SPOHC KROP", "SPOHCKROP"])
@@ -152,7 +152,7 @@ Bot.initEvents = function() {
 		} else if (porkchopLove && porkchopNameDropped ) {
 			message.react('❤️')
 			message.channel.send("❤️ oink oink ❤️");
-		} else if (porkchopNameDropped && content.toUpperCase().includes('!')) {
+		} else if (porkchopNameDropped && message.content.toUpperCase().includes('!')) {
 			message.channel.send("OINK! OINK!");
 		} else if (porkchopNameDropped) {
 			message.channel.send("oink oink");
