@@ -183,9 +183,11 @@ Bot.initEvents = function () {
 				}
 			} else if (porkchopNameDropped && message.content.toUpperCase().includes('QUOTE')) {
 				message.channel.send(`*Porkchop looks at you meaningfully, waiting for you to try again with a 'please'.*\noink oink`);
-			} else if (message.content.toUpperCase().includes('OINK OINK')) {
+			} else if (porkchopNameDropped && message.content.toUpperCase().includes('EASTER EGG')) {
+				message.channel.send("*I'll never tell* 😏 oink oink");
+			}  else if (message.content.toUpperCase().includes('OINK OINK')) {
 				message.channel.send("*Porkchop looks at you meaningfully. That's his job*");
-			}  else if (porkchopLove && (porkchopPlural || porkchopNameDropped) && eating) {
+			} else if (porkchopLove && (porkchopPlural || porkchopNameDropped) && eating) {
 				message.channel.send("*The pig stares are you with slow blinking eyes.\nIt's clear it understood what you said and it's clear it doesn't find it funny.\nYou think that's clever? You think that's humorous? 100s of people have made that joke before you and 100s will after you.\nThat's right: you're nothing but 1 of a face cloud of thousands, screaming for individuality with your stupid jokes only to have your voice drowned out by those doing the same.\nYou're nothing and will always be nothing.*\noink oink");
 			} else if (porkchopSpaced) {
 				message.channel.send("o i n k o i n k");
