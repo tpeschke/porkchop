@@ -156,7 +156,7 @@ Bot.initEvents = function () {
 					message.channel.send(`*${messageArray[randomMessage].content}*\n~ Sun Tzu`);
 				})
 			} else {
-				message.channel.send(`*${sunTzu()}*\n~Sun Tzu`);
+				message.channel.send(`*${sunTzu()}*\n~ Sun Tzu`);
 			}
 		} else if (message.author.username === 'MyDude') {
 			let randomChance = Math.floor(Math.random() * 10) + 1;
