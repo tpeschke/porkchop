@@ -210,7 +210,10 @@ Bot.initEvents = function () {
 			} else if (porkrelatedwords) {
 				message.react('🐽')
 			} else if ((message.content.toUpperCase().includes('H') && message.content.toUpperCase().includes('C') && message.content.toUpperCase().includes('K') && message.content.toUpperCase().includes('R') && message.content.toUpperCase().includes('O') && message.content.toUpperCase().includes('P')) && (!porkchopNameDropped || !backwards)) {
-				message.channel.send("*Porkchop looks at you a bit confused. Should he oink?*");
+				let randomNumber = Math.floor(Math.random() * 100);
+				if (randomNumber > 95) {
+					message.channel.send("*Porkchop looks at you a bit confused. Should he oink?*");
+				}
 			}
 		}
 		this.onMessage.bind(this)
