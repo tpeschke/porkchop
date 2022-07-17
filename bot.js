@@ -140,25 +140,7 @@ let checkIfIncludes = (content, array) => {
 Bot.initEvents = function () {
 	this.bot.on("ready", this.onReady.bind(this));
 	this.bot.on("message", message => {
-		let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP"])
-		let porkchopLove = message.content.toUpperCase().includes('LOVE')
-		let porkchopPlural = checkIfIncludes(message.content, ["PORK CHOPS", "PORKCHOPS"])
-		let eating = checkIfIncludes(message.content, ["EATING", "EAT"])
-		let backwards = checkIfIncludes(message.content, ["SPOHC KROP", "SPOHCKROP"])
-
-		if (porkchopNameDropped && message.content.toUpperCase().includes('QUOTE') && message.content.toUpperCase().includes('PLEASE')) {
-			let randomNumber = Math.floor(Math.random() * 2);
-			if (randomNumber) {
-				const channel = this.bot.channels.cache.get("621536837382438925");
-				channel.messages.fetch({ limit: 100 }).then(channelMessages => {
-					let randomMessage = Math.floor(Math.random() * 100);
-					let messageArray = Array.from(channelMessages.values())
-					message.channel.send(`*${messageArray[randomMessage].content}*\n~ Sun Tzu`);
-				})
-			} else {
-				message.channel.send(`*${sunTzu()}*\n~ Sun Tzu`);
-			}
-		} else if (message.author.username === 'MyDude') {
+		if (message.author.username === 'MyDude') {
 			let randomChance = Math.floor(Math.random() * 10) + 1;
 			if (randomChance > 6) {
 				let randomNumber = Math.floor(Math.random() * 2);
@@ -173,17 +155,61 @@ Bot.initEvents = function () {
 					message.channel.send(`*${sunTzu()}*\n~Sun Tzu`);
 				}
 			}
-		} else if (porkchopLove && porkchopNameDropped && porkchopPlural && eating) {
-			message.channel.send("*The pig stares are you with slow blinking eyes.\nIt's clear it understood what you said and it's clear it doesn't find it funny.\nYou think that's clever? You think that's humorous? 100s of people have made that joke before you and 100s will after you.\nThat's right: you're nothing but 1 of a face cloud of thousands, screaming for individuality with your stupid jokes only to have your voice drowned out by those doing the same.\nYou're nothing and will always be nothing.*\noink oink");
-		} else if (porkchopLove && porkchopNameDropped) {
-			message.react('❤️')
-			message.channel.send("❤️ oink oink ❤️");
-		} else if (porkchopNameDropped && message.content.toUpperCase().includes('!')) {
-			message.channel.send("OINK! OINK!");
-		} else if (porkchopNameDropped) {
-			message.channel.send("oink oink");
-		} else if (backwards) {
-			message.channel.send("knio knio");
+		}
+
+		if (message.author.username !== 'porkchop') {
+			let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP"])
+			let porkchopLove = message.content.toUpperCase().includes('LOVE')
+			let porkchopPlural = checkIfIncludes(message.content, ["PORK CHOPS", "PORKCHOPS"])
+			let eating = checkIfIncludes(message.content, ["EATING", "EAT"])
+			let backwards = checkIfIncludes(message.content, ["POHC KROP", "POHCKROP"])
+			let justPork = message.content.toUpperCase().includes('PORK')
+			let justChop = message.content.toUpperCase().includes('CHOP')
+			let porkchopSpaced = message.content.toUpperCase().includes('P O R K C H O P')
+			let porkchopSpacedBackwards = message.content.toUpperCase().includes('P O H C K R O P')
+			let porkrelatedwords = checkIfIncludes(message.content, ["HOG", "PIG", "SWINE", "PORKER", "SHOAT", "SOW", "PORCINE", "HAM", "SNOUT", "PORKCHOPS", "PORK CHOPS"])
+
+			if (porkchopNameDropped && message.content.toUpperCase().includes('QUOTE') && message.content.toUpperCase().includes('PLEASE')) {
+				let randomNumber = Math.floor(Math.random() * 2);
+				if (randomNumber) {
+					const channel = this.bot.channels.cache.get("621536837382438925");
+					channel.messages.fetch({ limit: 100 }).then(channelMessages => {
+						let randomMessage = Math.floor(Math.random() * 100);
+						let messageArray = Array.from(channelMessages.values())
+						message.channel.send(`*${messageArray[randomMessage].content}*\n~ Sun Tzu`);
+					})
+				} else {
+					message.channel.send(`*${sunTzu()}*\n~ Sun Tzu`);
+				}
+			} else if (porkchopNameDropped && message.content.toUpperCase().includes('QUOTE')) {
+				message.channel.send(`*Porkchop looks at you meaningfully, waiting for you to try again with a 'please'.*\noink oink`);
+			} else if (message.content.toUpperCase().includes('OINK OINK')) {
+				message.channel.send("*Porkchop looks at you meaningfully. That's his job*");
+			}  else if (porkchopLove && (porkchopPlural || porkchopNameDropped) && eating) {
+				message.channel.send("*The pig stares are you with slow blinking eyes.\nIt's clear it understood what you said and it's clear it doesn't find it funny.\nYou think that's clever? You think that's humorous? 100s of people have made that joke before you and 100s will after you.\nThat's right: you're nothing but 1 of a face cloud of thousands, screaming for individuality with your stupid jokes only to have your voice drowned out by those doing the same.\nYou're nothing and will always be nothing.*\noink oink");
+			} else if (porkchopSpaced) {
+				message.channel.send("o i n k o i n k");
+			} else if (porkchopSpacedBackwards) {
+				message.channel.send("k n i o k n i o");
+			} else if (porkchopLove && porkchopNameDropped) {
+				message.react('🐷')
+				message.react('❤️')
+				message.react('🇺')
+				message.react('2️⃣')
+				message.channel.send("❤️ oink oink ❤️");
+			} else if (porkchopNameDropped && message.content.toUpperCase().includes('!')) {
+				message.channel.send("OINK! OINK!");
+			} else if (backwards) {
+				message.channel.send("knio knio");
+			} else if ((justChop && !justPork) || (!justChop && justPork)) {
+				message.channel.send("oink");
+			} else if (porkchopNameDropped && !porkchopPlural) {
+				message.channel.send("oink oink");
+			} else if (porkrelatedwords) {
+				message.react('🐽')
+			} else if ((message.content.toUpperCase().includes('H') && message.content.toUpperCase().includes('C') && message.content.toUpperCase().includes('K') && message.content.toUpperCase().includes('R') && message.content.toUpperCase().includes('O') && message.content.toUpperCase().includes('P')) && (!porkchopNameDropped || !backwards)) {
+				message.channel.send("*Porkchop looks at you a bit confused. Should he oink?*");
+			}
 		}
 		this.onMessage.bind(this)
 	});
