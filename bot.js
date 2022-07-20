@@ -142,7 +142,7 @@ Bot.initEvents = function () {
 	this.bot.on("message", message => {
 		if (message.author.username === 'MyDude') {
 			let randomChance = Math.floor(Math.random() * 10) + 1;
-			if (randomChance > 6) {
+			if (randomChance > 9) {
 				let randomNumber = Math.floor(Math.random() * 2);
 				if (randomNumber) {
 					const channel = this.bot.channels.cache.get("621536837382438925");
