@@ -141,10 +141,10 @@ Bot.initEvents = function () {
 	this.bot.on("ready", this.onReady.bind(this));
 	this.bot.on("message", message => {
 		if (message.author.username === 'MyDude') {
-			let randomChance = Math.floor(Math.random() * 10) + 1;
-			if (randomChance > 9) {
-				let randomNumber = Math.floor(Math.random() * 2);
-				if (randomNumber) {
+			let randomChance = Math.floor(Math.random() * 100) + 1;
+			if (randomChance >= 95) {
+				let randomNumber = Math.floor(Math.random() * 10) + 1;
+				if (randomNumber > 9) {
 					const channel = this.bot.channels.cache.get("621536837382438925");
 					channel.messages.fetch({ limit: 100 }).then(channelMessages => {
 						let randomMessage = Math.floor(Math.random() * 100);
@@ -211,7 +211,7 @@ Bot.initEvents = function () {
 				message.react('🐽')
 			} else if ((message.content.toUpperCase().includes('H') && message.content.toUpperCase().includes('C') && message.content.toUpperCase().includes('K') && message.content.toUpperCase().includes('R') && message.content.toUpperCase().includes('O') && message.content.toUpperCase().includes('P')) && (!porkchopNameDropped || !backwards)) {
 				let randomNumber = Math.floor(Math.random() * 100);
-				if (randomNumber > 95) {
+				if (randomNumber > 99) {
 					message.channel.send("*Porkchop looks at you a bit confused. Should he oink?*");
 				}
 			}
