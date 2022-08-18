@@ -144,16 +144,16 @@ Bot.initEvents = function () {
 			let randomChance = Math.floor(Math.random() * 100) + 1;
 			if (randomChance >= 95) {
 				let randomNumber = Math.floor(Math.random() * 10) + 1;
-				if (randomNumber > 9) {
+				// if (randomNumber > 9) {
 					const channel = this.bot.channels.cache.get("621536837382438925");
 					channel.messages.fetch({ limit: 100 }).then(channelMessages => {
 						let randomMessage = Math.floor(Math.random() * 100);
 						let messageArray = Array.from(channelMessages.values())
 						message.channel.send(`*${messageArray[randomMessage].content}*\n~ Sun Tzu`);
 					})
-				} else {
-					message.channel.send(`*${sunTzu()}*\n~Sun Tzu`);
-				}
+				// } else {
+				// 	message.channel.send(`*${sunTzu()}*\n~Sun Tzu`);
+				// }
 			}
 		}
 
