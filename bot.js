@@ -170,17 +170,17 @@ Bot.initEvents = function () {
 			let porkrelatedwords = checkIfIncludes(message.content, ["HOG", "PIG", "SWINE", "PORKER", "SHOAT", "SOW", "PORCINE", "HAM", "SNOUT", "PORKCHOPS", "PORK CHOPS"])
 
 			if (porkchopNameDropped && message.content.toUpperCase().includes('QUOTE') && message.content.toUpperCase().includes('PLEASE')) {
-				let randomNumber = Math.floor(Math.random() * 2);
-				if (randomNumber) {
+				// let randomNumber = Math.floor(Math.random() * 2);
+				// if (randomNumber) {
 					const channel = this.bot.channels.cache.get("621536837382438925");
 					channel.messages.fetch({ limit: 100 }).then(channelMessages => {
 						let randomMessage = Math.floor(Math.random() * 100);
 						let messageArray = Array.from(channelMessages.values())
 						message.channel.send(`*${messageArray[randomMessage].content}*\n~ Sun Tzu`);
 					})
-				} else {
-					message.channel.send(`*${sunTzu()}*\n~ Sun Tzu`);
-				}
+				// } else {
+				// 	message.channel.send(`*${sunTzu()}*\n~ Sun Tzu`);
+				// }
 			} else if (porkchopNameDropped && message.content.toUpperCase().includes('QUOTE')) {
 				message.channel.send(`*Porkchop looks at you meaningfully, waiting for you to try again with a 'please'.*\noink oink`);
 			} else if (porkchopNameDropped && message.content.toUpperCase().includes('EASTER EGG')) {
