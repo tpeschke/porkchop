@@ -141,8 +141,8 @@ Bot.initEvents = function () {
 	this.bot.on("ready", this.onReady.bind(this));
 	this.bot.on("message", message => {
 		if (message.author.username === 'MyDude') {
-			let randomChance = Math.floor(Math.random() * 100) + 1;
-			if (randomChance >= 95) {
+			// let randomChance = Math.floor(Math.random() * 100) + 1;
+			// if (randomChance >= 95) {
 				let randomNumber = Math.floor(Math.random() * 10) + 1;
 				// if (randomNumber > 9) {
 					const channel = this.bot.channels.cache.get("621536837382438925");
@@ -154,7 +154,7 @@ Bot.initEvents = function () {
 				// } else {
 				// 	message.channel.send(`*${sunTzu()}*\n~Sun Tzu`);
 				// }
-			}
+			// }
 		}
 
 		if (message.author.username !== 'porkchop') {
@@ -185,7 +185,7 @@ Bot.initEvents = function () {
 				message.channel.send(`*Porkchop looks at you meaningfully, waiting for you to try again with a 'please'.*\noink oink`);
 			} else if (porkchopNameDropped && message.content.toUpperCase().includes('EASTER EGG')) {
 				message.channel.send("*I'll never tell* 😏 oink oink");
-			}  else if (message.content.toUpperCase().includes('OINK OINK')) {
+			}  else if (message.content.toUpperCase().includes('OINK OINK') || message.content.toUpperCase().includes('OINK')) {
 				message.channel.send("*Porkchop looks at you meaningfully. That's his job*");
 			} else if (porkchopLove && (porkchopPlural || porkchopNameDropped) && eating) {
 				message.channel.send("*The pig stares are you with slow blinking eyes.\nIt's clear it understood what you said and it's clear it doesn't find it funny.\nYou think that's clever? You think that's humorous? 100s of people have made that joke before you and 100s will after you.\nThat's right: you're nothing but 1 of a face cloud of thousands, screaming for individuality with your stupid jokes only to have your voice drowned out by those doing the same.\nYou're nothing and will always be nothing.*\noink oink");
@@ -210,8 +210,8 @@ Bot.initEvents = function () {
 			} else if (porkrelatedwords) {
 				message.react('🐽')
 			} else if ((message.content.toUpperCase().includes('H') && message.content.toUpperCase().includes('C') && message.content.toUpperCase().includes('K') && message.content.toUpperCase().includes('R') && message.content.toUpperCase().includes('O') && message.content.toUpperCase().includes('P')) && (!porkchopNameDropped || !backwards)) {
-				let randomNumber = Math.floor(Math.random() * 100);
-				if (randomNumber > 99) {
+				let randomNumber = Math.floor(Math.random() * 1000);
+				if (randomNumber > 999) {
 					message.channel.send("*Porkchop looks at you a bit confused. Should he oink?*");
 				}
 			}
