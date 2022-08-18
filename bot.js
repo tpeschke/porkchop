@@ -141,24 +141,24 @@ Bot.initEvents = function () {
 	this.bot.on("ready", this.onReady.bind(this));
 	this.bot.on("message", message => {
 		if (message.author.username === 'MyDude') {
-			// let randomChance = Math.floor(Math.random() * 100) + 1;
-			// if (randomChance >= 95) {
+			let randomChance = Math.floor(Math.random() * 100) + 1;
+			if (randomChance >= 95) {
 				let randomNumber = Math.floor(Math.random() * 10) + 1;
-				// if (randomNumber > 9) {
+				if (randomNumber > 9) {
 					const channel = this.bot.channels.cache.get("621536837382438925");
 					channel.messages.fetch({ limit: 100 }).then(channelMessages => {
 						let randomMessage = Math.floor(Math.random() * 100);
 						let messageArray = Array.from(channelMessages.values())
 						message.channel.send(`*${messageArray[randomMessage].content}*\n~ Sun Tzu`);
 					})
-				// } else {
-				// 	message.channel.send(`*${sunTzu()}*\n~Sun Tzu`);
-				// }
-			// }
+				} else {
+					message.channel.send(`*${sunTzu()}*\n~Sun Tzu`);
+				}
+			}
 		}
 
 		if (message.author.username !== 'porkchop') {
-			let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP"])
+			let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP", "PORK CHOP,", "PORKCHOP,"])
 			let porkchopLove = message.content.toUpperCase().includes('LOVE')
 			let porkchopPlural = checkIfIncludes(message.content, ["PORK CHOPS", "PORKCHOPS"])
 			let eating = checkIfIncludes(message.content, ["EATING", "EAT"])
