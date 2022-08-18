@@ -177,7 +177,7 @@ Bot.initEvents = function () {
 						let randomMessage = Math.floor(Math.random() * 100);
 						let messageArray = Array.from(channelMessages.values())
 						message.channel.send(`*${messageArray[randomMessage].content}*\n~ Sun Tzu`);
-					})
+					}).catch(e => message.channel.send(`${e.message}`))
 				// } else {
 				// 	message.channel.send(`*${sunTzu()}*\n~ Sun Tzu`);
 				// }
