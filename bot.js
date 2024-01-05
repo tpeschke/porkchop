@@ -140,7 +140,7 @@ let checkIfIncludes = (content, array) => {
 Bot.initEvents = function () {
 	this.bot.on("ready", this.onReady.bind(this));
 	this.bot.on("message", message => {
-		if (message.author.username === 'MyDude') {
+		if (message.author.username.toUpperCase.includes('MYDUDE')) {
 			let randomChance = Math.floor(Math.random() * 100) + 1;
 			if (randomChance >= 95) {
 				let randomNumber = Math.floor(Math.random() * 10) + 1;
@@ -158,6 +158,7 @@ Bot.initEvents = function () {
 		}
 
 		if (message.author.username !== 'porkchop') {
+			const relatedWordsArray = ["HOG", "PIG", "SWINE", "PORKER", "SHOAT", "SOW", "PORCINE", "HAM", "SNOUT", "PORKCHOPS", "PORK CHOPS", "PORK", "CHOP", "PORKCHOP"]
 			let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP", "PORK CHOP,", "PORKCHOP,"])
 			let porkchopLove = message.content.toUpperCase().includes('LOVE')
 			let porkchopPlural = checkIfIncludes(message.content, ["PORK CHOPS", "PORKCHOPS"])
@@ -167,7 +168,7 @@ Bot.initEvents = function () {
 			let justChop = message.content.toUpperCase().includes('CHOP')
 			let porkchopSpaced = message.content.toUpperCase().includes('P O R K C H O P')
 			let porkchopSpacedBackwards = message.content.toUpperCase().includes('P O H C K R O P')
-			let porkrelatedwords = checkIfIncludes(message.content, ["HOG", "PIG", "SWINE", "PORKER", "SHOAT", "SOW", "PORCINE", "HAM", "SNOUT", "PORKCHOPS", "PORK CHOPS"])
+			let porkrelatedwords = checkIfIncludes(message.content, relatedWordsArray)
 
 			if (porkchopNameDropped && message.content.toUpperCase().includes('QUOTE') && message.content.toUpperCase().includes('PLEASE')) {
 				let randomNumber = Math.floor(Math.random() * 2);
@@ -208,7 +209,16 @@ Bot.initEvents = function () {
 			} else if (porkchopNameDropped && !porkchopPlural) {
 				message.channel.send("oink oink");
 			} else if (porkrelatedwords) {
-				message.react('🐽')
+				count = countRelatedWords(message.content.toUpperCase(), relatedWordsArray)
+				if (count > 1) {
+					let oinkString = ''
+					for (i = 0; i < count; i++) {
+						oinkString += 'oink '
+					}
+					message.channel.send(oinkString);
+				} else {
+					message.react('🐽')
+				}
 			} else if ((message.content.toUpperCase().includes('H') && message.content.toUpperCase().includes('C') && message.content.toUpperCase().includes('K') && message.content.toUpperCase().includes('R') && message.content.toUpperCase().includes('O') && message.content.toUpperCase().includes('P')) && (!porkchopNameDropped || !backwards)) {
 				let randomNumber = Math.floor(Math.random() * 1000);
 				if (randomNumber > 999) {
@@ -220,6 +230,22 @@ Bot.initEvents = function () {
 	});
 	Events.registerEvents(this.bot);
 };
+
+const countRelatedWords = (stringToCheck, relatedWordsArray) => {
+	let count = 0;
+
+	const stringArray = stringToCheck.split(' ')
+
+	stringArray.forEach(word => {
+		relatedWordsArray.forEach(relatedWord => {
+			if (word === relatedWord) {
+				count++
+			}
+		})
+	})
+	
+	return count
+}
 
 Bot.login = function () {
 	this.bot.login(Files.data.settings.token);
@@ -1171,6 +1197,7 @@ Events.onError = function (text, text2, cache) {
 //---------------------------------------------------------------------
 
 const JIMP = require("jimp");
+const { count } = require("console");
 
 const Images = DBM.Images = {};
 
