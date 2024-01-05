@@ -137,10 +137,26 @@ let checkIfIncludes = (content, array) => {
 	return false
 }
 
+const countRelatedWords = (stringToCheck, relatedWordsArray) => {
+	let count = 0;
+
+	const stringArray = stringToCheck.split(' ')
+
+	stringArray.forEach(word => {
+		relatedWordsArray.forEach(relatedWord => {
+			if (word === relatedWord) {
+				count++
+			}
+		})
+	})
+	
+	return count
+}
+
 Bot.initEvents = function () {
 	this.bot.on("ready", this.onReady.bind(this));
 	this.bot.on("message", message => {
-		if (message.author.username.toUpperCase.includes('MYDUDE')) {
+		if (message.author.username.toUpperCase().includes('MYDUDE')) {
 			let randomChance = Math.floor(Math.random() * 100) + 1;
 			if (randomChance >= 95) {
 				let randomNumber = Math.floor(Math.random() * 10) + 1;
@@ -159,7 +175,7 @@ Bot.initEvents = function () {
 
 		if (message.author.username !== 'porkchop') {
 			const relatedWordsArray = ["HOG", "PIG", "SWINE", "PORKER", "SHOAT", "SOW", "PORCINE", "HAM", "SNOUT", "PORKCHOPS", "PORK CHOPS", "PORK", "CHOP", "PORKCHOP"]
-			let porkchopNameDropped = checkIfIncludes(message.content, ["PORK CHOP", "PORKCHOP", "PORK CHOP,", "PORKCHOP,"])
+			let porkchopNameDropped = checkIfIncludes(message.content, ["PORKCHOP"])
 			let porkchopLove = message.content.toUpperCase().includes('LOVE')
 			let porkchopPlural = checkIfIncludes(message.content, ["PORK CHOPS", "PORKCHOPS"])
 			let eating = checkIfIncludes(message.content, ["EATING", "EAT"])
@@ -209,7 +225,7 @@ Bot.initEvents = function () {
 			} else if (porkchopNameDropped && !porkchopPlural) {
 				message.channel.send("oink oink");
 			} else if (porkrelatedwords) {
-				count = countRelatedWords(message.content.toUpperCase(), relatedWordsArray)
+				const count = countRelatedWords(message.content.toUpperCase(), relatedWordsArray)
 				if (count > 1) {
 					let oinkString = ''
 					for (i = 0; i < count; i++) {
@@ -230,22 +246,6 @@ Bot.initEvents = function () {
 	});
 	Events.registerEvents(this.bot);
 };
-
-const countRelatedWords = (stringToCheck, relatedWordsArray) => {
-	let count = 0;
-
-	const stringArray = stringToCheck.split(' ')
-
-	stringArray.forEach(word => {
-		relatedWordsArray.forEach(relatedWord => {
-			if (word === relatedWord) {
-				count++
-			}
-		})
-	})
-	
-	return count
-}
 
 Bot.login = function () {
 	this.bot.login(Files.data.settings.token);
